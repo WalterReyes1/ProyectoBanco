@@ -520,6 +520,7 @@ public class Main extends javax.swing.JFrame {
         Pila p2 = new Pila();
         Pila p3 = new Pila();
         Pila p4 = new Pila();
+        Registro5.setText("");
         int x = (int) jSpinner1.getValue();
         if (cont1 == 1) {
             Registro1.setText("");
@@ -557,6 +558,9 @@ public class Main extends javax.swing.JFrame {
                     break;
                 }
                 case 2: {
+                    int r1 = 0;
+                    int r2 = 0;
+
                     Random r = new Random();
                     String transacción = "";
                     c1.setVacio(true);
@@ -580,6 +584,7 @@ public class Main extends javax.swing.JFrame {
                         System.out.println(c.listaPersona.get(i).toString());
                     }
                     ArrayList<Integer> array = new ArrayList();
+                    int t = 0;
                     //int[] array = new int [69];
                     for (int i = 0; i < 69; i++) {
                         if (i < 20) {
@@ -588,34 +593,39 @@ public class Main extends javax.swing.JFrame {
                         if (i >= 20 && i <= 30) {
                             array.add(2);
                         }
-                        if (i > 31) {
+                        if (i > 30) {
                             array.add(1);
                         }
                     }
 
                     int y = 70;
+                    jProgressBar1.setMaximum(120);
+                    int temp = 0;
                     while (!c.listaPersona.isEmpty()) {
-                        c.quita();
+
+                        try {
+
+                            int z = r.nextInt(array.size());
+                            ;
+                            //z*1000
+                            Thread.sleep(array.get(z) * 1000);
+                            t += array.get(z);
+                            temp = array.get(z);
+                            jProgressBar1.setString("Segundos: " + t);
+                            jProgressBar1.setValue(t);
+                            array.remove(z);
+
+                        } catch (Exception e) {
+
+                        }
                         if (c1.isVacio() && c2.isVacio()) {
-                            try {
 
-                                System.out.println("hola");
-
-                                int z = r.nextInt(array.size());
-                                System.out.println(z);
-                                //z*1000
-                                Thread.sleep(array.get(z) * 1000);
-                                array.remove(z);
-
-                            } catch (Exception e) {
-
-                            }
                             int z = r.nextInt(2) + 1;
                             if (z == 1) {
                                 c1.setVacio(false);
                                 if (!c.listaPersona.isEmpty()) {
 
-                                    System.out.println(c.listaPersona.get(0).getNombre());
+                                    //System.out.println(c.listaPersona.get(0).getNombre());
                                     c1.setPersona(c.listaPersona.get(0));
 
                                     p1.listaTransacción.add(c.listaPersona.get(0).getNombre() + " Hizo un " + c.listaPersona.get(0).getTransaccion());
@@ -625,14 +635,7 @@ public class Main extends javax.swing.JFrame {
                                     Registro1.setText(registroTotal);
                                     cont2++;
                                     c1.setVacio(true);
-                                    if (y != 0) {
-                                        // nombre1 = c.listaPersona.get(0).getNombre();
-
-                                    }
-                                    if (y > 1) {
-                                        //nombre2 = c.listaPersona.get(1).getNombre();
-
-                                    }
+                                    r1 += temp;
 
                                 }
 
@@ -648,16 +651,7 @@ public class Main extends javax.swing.JFrame {
                                     Registro2.setText(registroTotal2);
                                     cont3++;
                                     c2.setVacio(true);
-                                    if (y != 0) {
-                                        //  nombre1 = c.listaPersona.get(0).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
-
-                                    }
-                                    if (y > 1) {
-                                        //nombre2 = c.listaPersona.get(1).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
-
-                                    }
+                                    r2 += temp;
 
                                 }
 
@@ -665,7 +659,10 @@ public class Main extends javax.swing.JFrame {
 
                         }
                         y--;
+                        c.quita();
                     }
+                    String t5 = "Tiempo en cajero 1: " + r1 + "\n" + "Tiempo en cajero 2: " + r2;
+                    Registro5.setText(t5);
                     break;
                 }
                 case 3: {
@@ -693,6 +690,8 @@ public class Main extends javax.swing.JFrame {
                     }
                     ArrayList<Integer> array = new ArrayList();
                     //int[] array = new int [69];
+                    jProgressBar1.setMaximum(120);
+                    int t = 0;
                     for (int i = 0; i < 69; i++) {
                         if (i < 20) {
                             array.add(3);
@@ -700,33 +699,36 @@ public class Main extends javax.swing.JFrame {
                         if (i >= 20 && i <= 30) {
                             array.add(2);
                         }
-                        if (i > 31) {
+                        if (i > 30) {
                             array.add(1);
                         }
                     }
+
                     int y = 70;
                     while (!c.listaPersona.isEmpty()) {
+                        try {
+
+                            int z = r.nextInt(array.size());
+
+                            //z*1000
+                            Thread.sleep(array.get(z) * 1000);
+                            t += array.get(z);
+                            jProgressBar1.setString("segundos: " + t);
+                            jProgressBar1.setValue(t);
+                            array.remove(z);
+
+                        } catch (Exception e) {
+
+                        }
                         c.quita();
                         if (c1.isVacio() && c2.isVacio() && c3.isVacio()) {
-                            try {
 
-                                System.out.println("hola");
-
-                                int z = r.nextInt(array.size());
-                                System.out.println(z);
-                                //z*1000
-                                Thread.sleep(array.get(z) * 1000);
-                                array.remove(z);
-
-                            } catch (Exception e) {
-
-                            }
                             int z = r.nextInt(3) + 1;
                             if (z == 1) {
                                 c1.setVacio(false);
                                 if (!c.listaPersona.isEmpty()) {
 
-                                    System.out.println(c.listaPersona.get(0).getNombre());
+                                    // System.out.println(c.listaPersona.get(0).getNombre());
                                     c1.setPersona(c.listaPersona.get(0));
 
                                     p1.listaTransacción.add(c.listaPersona.get(0).getNombre() + " Hizo un " + c.listaPersona.get(0).getTransaccion());
@@ -760,12 +762,12 @@ public class Main extends javax.swing.JFrame {
                                     c2.setVacio(true);
                                     if (y != 0) {
                                         //   nombre1 = c.listaPersona.get(0).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        // System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                     if (y > 1) {
                                         //   nombre2 = c.listaPersona.get(1).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        //  System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                     y--;
@@ -785,12 +787,12 @@ public class Main extends javax.swing.JFrame {
                                     c3.setVacio(true);
                                     if (y != 0) {
                                         // nombre1 = c.listaPersona.get(0).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        // System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                     if (y > 0) {
                                         // nombre2 = c.listaPersona.get(1).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        // System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                     y--;
@@ -803,6 +805,11 @@ public class Main extends javax.swing.JFrame {
                     break;
                 }
                 case 4: {
+                    int r1 = 0;
+                    int r2 = 0;
+                    int r3 = 0;
+                    int r4 = 0;
+                    int temp = 0;
                     Random r = new Random();
                     String transacción = "";
                     c1.setVacio(true);
@@ -827,6 +834,7 @@ public class Main extends javax.swing.JFrame {
                     }
                     ArrayList<Integer> array = new ArrayList();
                     //int[] array = new int [69];
+                    int t = 0;
                     for (int i = 0; i < 69; i++) {
                         if (i < 20) {
                             array.add(3);
@@ -834,22 +842,27 @@ public class Main extends javax.swing.JFrame {
                         if (i >= 20 && i <= 30) {
                             array.add(2);
                         }
-                        if (i > 31) {
+                        if (i > 30) {
                             array.add(1);
                         }
                     }
                     int y = 50;
+                    jProgressBar1.setMaximum(120);
                     while (!c.listaPersona.isEmpty()) {
                         c.quita();
                         if (c1.isVacio() && c2.isVacio() && c3.isVacio()) {
                             try {
 
-                                System.out.println("hola");
-
+                                // System.out.println("hola");
                                 int z = r.nextInt(array.size());
                                 System.out.println(z);
                                 //z*1000
                                 Thread.sleep(array.get(z) * 1000);
+                                t += array.get(z);
+                                temp = array.get(z);
+                                jProgressBar1.setString("Segundos: " + t);
+                                jProgressBar1.setValue(+t);
+
                                 array.remove(z);
 
                             } catch (Exception e) {
@@ -860,7 +873,7 @@ public class Main extends javax.swing.JFrame {
                                 c1.setVacio(false);
                                 if (!c.listaPersona.isEmpty()) {
 
-                                    System.out.println(c.listaPersona.get(0).getNombre());
+                                    //  System.out.println(c.listaPersona.get(0).getNombre());
                                     c1.setPersona(c.listaPersona.get(0));
 
                                     p1.listaTransacción.add(c.listaPersona.get(0).getNombre() + " Hizo un " + c.listaPersona.get(0).getTransaccion());
@@ -870,6 +883,7 @@ public class Main extends javax.swing.JFrame {
                                     Registro1.setText(registroTotal);
                                     cont2++;
                                     c1.setVacio(true);
+                                    r1 += temp;
                                     if (y != 0) {
                                         //   nombre1 = c.listaPersona.get(0).getNombre();
 
@@ -892,14 +906,15 @@ public class Main extends javax.swing.JFrame {
                                     Registro2.setText(registroTotal2);
                                     cont3++;
                                     c2.setVacio(true);
+                                    r2 += temp;
                                     if (y != 0) {
                                         nombre1 = c.listaPersona.get(0).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        // System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                     if (y > 1) {
                                         nombre2 = c.listaPersona.get(1).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        //  System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                 }
@@ -915,15 +930,16 @@ public class Main extends javax.swing.JFrame {
                                     registroTotal3 += p3.listaTransacción.get(cont4) + "\n";
                                     Registro3.setText(registroTotal3);
                                     cont4++;
+                                    r3 += temp;
                                     c3.setVacio(true);
                                     if (y != 0) {
                                         nombre1 = c.listaPersona.get(0).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        //  System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                     if (y > 1) {
                                         nombre2 = c.listaPersona.get(1).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        //  System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                 }
@@ -939,15 +955,16 @@ public class Main extends javax.swing.JFrame {
                                     registroTotal4 += p4.listaTransacción.get(cont5) + "\n";
                                     Registro4.setText(registroTotal4);
                                     cont5++;
+                                    r4 += temp;
                                     c4.setVacio(true);
                                     if (y != 0) {
                                         nombre1 = c.listaPersona.get(0).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        //  System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                     if (y > 1) {
                                         nombre2 = c.listaPersona.get(1).getNombre();
-                                        System.out.println(c.listaPersona.get(0).getNombre());
+                                        //  System.out.println(c.listaPersona.get(0).getNombre());
 
                                     }
                                 }
@@ -956,6 +973,13 @@ public class Main extends javax.swing.JFrame {
                         }
                         y--;
                     }
+                    String r5 = "";
+                    r5 += "Tiempo en cajeros:  " + "\n";
+                    r5 += "Cajero 1: " + r1 + "\n";
+                    r5 += "Cajero 2: " + r2 + "\n";
+                    r5 += "Cajero 3: " + r3 + "\n";
+                    r5 += "Cajero 4: " + r4 + "\n";
+                    Registro5.setText(r5);
                     break;
                 }
             }
@@ -1151,6 +1175,11 @@ public class Main extends javax.swing.JFrame {
                 co4.listaPersona.clear();
             }
             if (x1 == 3) {
+                int temp = 0;
+                int r1 = 0;
+                int r2 = 0;
+                int r3 = 0;
+                int r4 = 0;
                 Random r = new Random();
                 String transacción = "";
                 c1.setVacio(true);
@@ -1198,12 +1227,13 @@ public class Main extends javax.swing.JFrame {
                     if (i >= 20 && i < 40) {
                         array.add(2);
                     }
-                    if (i >= 41) {
+                    if (i >= 40) {
                         array.add(2);
                     }
                 }
                 int y = 49;
-
+                int t = 0;
+                jProgressBar1.setMaximum(120);
                 while (0 < y) {
                     int xd = r.nextInt(3) + 1;
                     // System.out.println("Cajero " + xd);
@@ -1211,12 +1241,14 @@ public class Main extends javax.swing.JFrame {
 
                         try {
 
-                            System.out.println("hola");
-
+                            // System.out.println("hola");
                             int z = r.nextInt(array.size());
                             System.out.println(z);
-                            //z*1000
+                            t += array.get(z);
+                            temp = z;
                             Thread.sleep(array.get(z) * 1000);
+                            jProgressBar1.setString("Segundos: " + t);
+                            jProgressBar1.setValue(t);
                             array.remove(z);
 
                         } catch (Exception e) {
@@ -1240,6 +1272,7 @@ public class Main extends javax.swing.JFrame {
                                 registroTotal += p1.listaTransacción.get(cont2) + "\n";
                                 Registro1.setText(registroTotal);
                                 cont2++;
+                                r1 += temp;
                                 if (y != 0) {
                                     //nombre1 = c.listaPersona.get(0).getNombre();
 
@@ -1287,6 +1320,7 @@ public class Main extends javax.swing.JFrame {
                             registroTotal2 += p2.listaTransacción.get(conta2) + "\n";
                             Registro2.setText(registroTotal2);
                             conta2++;
+                            r2 += temp;
                             if (y != 0) {
                                 //nombre1 = co2.listaPersona.get(0).getNombre();
 
@@ -1319,6 +1353,7 @@ public class Main extends javax.swing.JFrame {
                             registroTotal3 += p3.listaTransacción.get(conta3) + "\n";
                             Registro3.setText(registroTotal3);
                             conta3++;
+                            r3 += temp;
                             if (y != 0) {
                                 //nombre1 = co2.listaPersona.get(0).getNombre();
 
@@ -1356,6 +1391,11 @@ public class Main extends javax.swing.JFrame {
 
             }
             if (x1 == 4) {
+                int r1 = 0;
+                int r2 = 0;
+                int r3 = 0;
+                int r4 = 0;
+                int temp = 0;
                 Random r = new Random();
                 String transacción = "";
                 c1.setVacio(true);
@@ -1403,7 +1443,7 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 ArrayList<Integer> array = new ArrayList();
-
+                int t = 0;
                 for (int i = 0; i < 48; i++) {
                     if (i < 24) {
                         array.add(3);
@@ -1415,7 +1455,7 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 int y = 48;
-
+                jProgressBar1.setMaximum(120);
                 while (0 < y) {
 
                     int xd = r.nextInt(4) + 1;
@@ -1424,11 +1464,11 @@ public class Main extends javax.swing.JFrame {
                     //jDialog1.setVisible(true);
                     try {
 
-                        //System.out.println("hola");
-
                         int z = r.nextInt(array.size());
-                       // System.out.println(z);
-                        //z*1000
+                        t += array.get(z);
+                        temp = array.get(z);
+                        jProgressBar1.setString("Segundos: " + t);
+                        jProgressBar1.setValue(t);
                         Thread.sleep(array.get(z) * 1000);
                         array.remove(z);
 
@@ -1445,7 +1485,7 @@ public class Main extends javax.swing.JFrame {
 
                                 if (!c.listaPersona.isEmpty()) {
                                     c1.setVacio(false);
-                                    System.out.println(c.listaPersona.get(0).getNombre());
+                                    //  System.out.println(c.listaPersona.get(0).getNombre());
 
                                     c1.setPersona(c.listaPersona.get(0));
                                     p1.listaTransacción.add(c.listaPersona.get(0).getNombre() + " Hizo un " + c.listaPersona.get(0).getTransaccion());
@@ -1454,6 +1494,7 @@ public class Main extends javax.swing.JFrame {
                                     registroTotal += p1.listaTransacción.get(cont2) + "\n";
                                     Registro1.setText(registroTotal);
                                     cont2++;
+                                    r1 += temp;
                                     if (y != 0) {
                                         //nombre1 = c.listaPersona.get(0).getNombre();
 
@@ -1473,7 +1514,6 @@ public class Main extends javax.swing.JFrame {
                             } else {
                                 System.out.println("Es una oficina Gubernamental, se cayó el sistema");
                             }
-                            
 
                             c1.setVacio(true);
 
@@ -1487,8 +1527,7 @@ public class Main extends javax.swing.JFrame {
                             valc2 += aux;
                             if (!co2.listaPersona.isEmpty()) {
 
-                                System.out.println(co2.listaPersona.get(0).getNombre());
-
+                                //System.out.println(co2.listaPersona.get(0).getNombre());
                                 c2.setPersona(co2.listaPersona.get(0));
                                 p2.listaTransacción.add(co2.listaPersona.get(0).getNombre() + " Hizo un " + co2.listaPersona.get(0).getTransaccion());
                                 c2.setP(p2);
@@ -1496,6 +1535,7 @@ public class Main extends javax.swing.JFrame {
                                 registroTotal2 += p2.listaTransacción.get(conta2) + "\n";
                                 Registro2.setText(registroTotal2);
                                 conta2++;
+                                r2 += temp;
                                 if (y != 0) {
                                     //nombre1 = co2.listaPersona.get(0).getNombre();
 
@@ -1525,8 +1565,7 @@ public class Main extends javax.swing.JFrame {
                             valc3 += aux;
                             if (!co3.listaPersona.isEmpty()) {
 
-                                System.out.println(co3.listaPersona.get(0).getNombre());
-
+                                // System.out.println(co3.listaPersona.get(0).getNombre());
                                 c3.setPersona(co3.listaPersona.get(0));
                                 p3.listaTransacción.add(co3.listaPersona.get(0).getNombre() + " Hizo un " + co3.listaPersona.get(0).getTransaccion());
                                 c3.setP(p3);
@@ -1534,6 +1573,7 @@ public class Main extends javax.swing.JFrame {
                                 registroTotal3 += p3.listaTransacción.get(conta3) + "\n";
                                 Registro3.setText(registroTotal3);
                                 conta3++;
+                                r3 += temp;
                                 if (y != 0) {
                                     //nombre1 = co2.listaPersona.get(0).getNombre();
 
@@ -1562,8 +1602,7 @@ public class Main extends javax.swing.JFrame {
                             valc4 += aux;
                             if (!co4.listaPersona.isEmpty()) {
 
-                                System.out.println(co4.listaPersona.get(0).getNombre());
-
+                                // System.out.println(co4.listaPersona.get(0).getNombre());
                                 c4.setPersona(co4.listaPersona.get(0));
                                 p4.listaTransacción.add(co4.listaPersona.get(0).getNombre() + " Hizo un " + co4.listaPersona.get(0).getTransaccion());
                                 c3.setP(p3);
@@ -1571,6 +1610,7 @@ public class Main extends javax.swing.JFrame {
                                 registroTotal4 += p4.listaTransacción.get(conta4) + "\n";
                                 Registro4.setText(registroTotal4);
                                 conta4++;
+                                r4 += temp;
                                 if (y != 0) {
                                     //nombre1 = co2.listaPersona.get(0).getNombre();
 
@@ -1604,17 +1644,16 @@ public class Main extends javax.swing.JFrame {
                 co2.listaPersona.clear();
                 co3.listaPersona.clear();
                 co4.listaPersona.clear();
-
+                String r5 = "";
+                r5 += "Tiempo en cajeros:  " + "\n";
+                r5 += "Cajero 1: " + r1 + "\n";
+                r5 += "Cajero 2: " + r2 + "\n";
+                r5 += "Cajero 3: " + r3 + "\n";
+                r5 += "Cajero 4: " + r4 + "\n";
+                Registro5.setText(r5);
             }
-            String r5 = "";
-            r5 += "Tiempo en cajeros:  " + "\n";
-            r5 += "Cajero 1: " + valc1 + "\n";
-            r5 += "Cajero 2: " + valc2 + "\n";
-            r5 += "Cajero 3: " + valc3 + "\n";
-            r5 += "Cajero 4: " + valc4 + "\n";
-            Registro5.setText(r5);
 
-            System.out.println("quedan: ");
+           // System.out.println("quedan: ");
             for (int i = 0; i < co4.listaPersona.size(); i++) {
                 System.out.println(co4.listaPersona.toString());
             }
@@ -1684,6 +1723,7 @@ public class Main extends javax.swing.JFrame {
         x.setAvanzar(true);
         x.setVive(true);
         int y = 69;
+        jProgressBar1.setMaximum(120);
 
         while (0 < y) {
 
@@ -1692,12 +1732,15 @@ public class Main extends javax.swing.JFrame {
             //  x.run();
             try {
 
-                System.out.println("hola");
+                //  System.out.println("hola");
                 Random r = new Random();
                 int z = r.nextInt(array.size());
-                System.out.println(z);
+                //  System.out.println(z);
+                t += array.get(z);
+                jProgressBar1.setString("Segundos: " + t);
+                jProgressBar1.setValue(t);
                 //z*1000
-               // Thread.sleep(array.get(z) * 1000);
+                // Thread.sleep(array.get(z) * 1000);
                 array.remove(z);
 
             } catch (Exception e) {
@@ -1710,8 +1753,7 @@ public class Main extends javax.swing.JFrame {
                 c.quita();
                 if (!c.listaPersona.isEmpty()) {
 
-                    System.out.println(c.listaPersona.get(0).getNombre());
-
+                    // System.out.println(c.listaPersona.get(0).getNombre());
                     c1.setPersona(c.listaPersona.get(0));
                     p.listaTransacción.add(c.listaPersona.get(0).getNombre() + " Hizo un " + c.listaPersona.get(0).getTransaccion());
                     c1.setP(p);
